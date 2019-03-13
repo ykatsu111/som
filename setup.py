@@ -10,7 +10,7 @@ setup_args = dict(
         "scipy"
     ],
     py_modules=(
-        "som"
+        "som",
     ),
     url="https://github.com/ykatsu111/som.git"
 )

@@ -9,8 +9,8 @@ setup_args = dict(
         "numpy",
         "scipy"
     ],
-    packages=find_packages(
-        exclude=("demo",)
+    py_modules=(
+        "som"
     ),
     url="https://github.com/ykatsu111/som.git"
 )

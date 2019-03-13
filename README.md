@@ -21,3 +21,4 @@ Moreover, please check `numpy` and `scipy` are installed on your python.
 # Others
 
 This module is an implimentation of [Nishiyama et al. (2007)](https://doi.org/10.1016/j.atmosres.2005.10.015).
+However, this module uses square grid system, not hexagonal grid system which is used in Nishiyama et al.

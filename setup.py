@@ -16,10 +16,9 @@ setup_args = dict(
 )
 
 
-if sys.version_info.major == 3:
-    setup(
-        use_2to3=True,
-        **setup_args
+if sys.version_info.major == 2:
+    raise NotImplementedError(
+        "python 2.x is not supported now."
     )
 else:
     setup(

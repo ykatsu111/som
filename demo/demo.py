@@ -3,6 +3,7 @@ if __name__ == '__main__':
     import numpy as np
     import tempfile
     import os
+    from som import CompetitionLayer, KMeans
 
     # teachers = np.random.rand(10000, 3)
     teachers = np.array(
@@ -25,15 +26,12 @@ if __name__ == '__main__':
     plt.clabel(cb)
     plt.show()
 
-    f = tempfile.NamedTemporaryFile(delete=False)
-    f.close()
+    m.save("som.cache.npz")
     try:
-        m.save(f.name)
-        m2 = CompetitionLayer.load(f.name)
-        print m2.__com_layer_additional_atr
+        m2 = CompetitionLayer.load("som.cache.npz")
 
     finally:
-        os.remove(f.name)
+        os.remove("som.cache.npz")
 
     k = KMeans(m.unit1d, 3)
     while True:
@@ -42,9 +40,9 @@ if __name__ == '__main__':
             break
 
     km = k.mean_vector()
-    print km
+    print(km)
     plt.imshow(km.reshape([km.shape[0], 1, km.shape[1]]))
     plt.show()
 
-    print k.davis_bouldin_index()
+    print(k.davis_bouldin_index())
     

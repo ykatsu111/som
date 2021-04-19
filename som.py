@@ -58,6 +58,32 @@ class CompetitionLayer(np.ndarray):
             self.itrain = getattr(obj, 'itrain', None)
             return
 
+    def save(self, fname):
+        np.savez(
+            fname,
+            self=self,
+            unit_shape=self.unit_shape,
+            weight_vector_size=self.weight_vector_size,
+            ntrain=self.ntrain,
+            itrain=self.itrain,
+            alpha0=self.alpha0,
+            sigma=self.sigma
+        )
+        return
+
+    @classmethod
+    def load(cls, fname):
+        a = np.load(fname)
+        obj = cls(
+            a["unit_shape"], int(a["weight_vector_size"]),
+            alpha0=float(a["alpha0"]), 
+            ntrain=a["ntrain"]
+        )
+        obj[:] = a["self"]
+        obj.sigma = float(a["sigma"])
+        obj.itrain = int(a["itrain"])
+        return obj
+
     @property
     def alpha(self):
         return self.alpha0 * (self.ntrain - self.itrain) / self.ntrain
